@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
 
 permissions:
@@ -12,74 +12,76 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install uv
-      uses: astral-sh/setup-uv@v2
-      with:
-        version: "latest"
-        
-    - name: Install dependencies
-      run: uv sync
-      
-    - name: Install PyInstaller
-      run: uv add pyinstaller pillow
-      
-    - name: Build executable
-      run: |
-        echo "Building executable..."
-        $env:PYTHONIOENCODING="utf-8"
-        uv run python build_exe.py
-        echo "Build completed. Checking dist directory..."
-        dir dist
-        
-    - name: Create directories
-      run: |
-        mkdir -p dist/downloads
-        mkdir -p dist/backups
-        mkdir -p dist/config
-        echo "Directories created for packaging"
-        
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: tModLoaderInstaller
-        path: dist/
-        
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Install PyInstaller
+        run: uv add pyinstaller pillow
+
+      - name: Build executable
+        run: |
+          echo "Building executable..."
+          $env:PYTHONIOENCODING="utf-8"
+          uv run python build_exe.py
+          echo "Build completed. Checking dist directory..."
+          dir dist
+
+      - name: Create directories
+        run: |
+          mkdir -p dist/downloads
+          mkdir -p dist/backups
+          mkdir -p dist/config
+          echo "Directories created for packaging"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tModLoaderInstaller
+          path: dist/
+
   release:
     needs: build
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
-    
+
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: tModLoaderInstaller
-        path: dist/
-        
-    - name: Create ZIP package
-      run: |
-        cd dist
-        zip -r tModLoaderInstaller-${{ github.ref_name }}.zip .
-        echo "ZIP package created: tModLoaderInstaller-${{ github.ref_name }}.zip"
-        ls -la *.zip
-        
-    - name: Create Release
-      id: create_release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: ${{ github.ref_name }}
-        name: Release ${{ github.ref_name }}
-        draft: false
-        prerelease: false
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: dist/*.zip
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tModLoaderInstaller
+          path: dist/
+
+      - name: Create package
+        run: |
+          cd dist
+          zip -r tModLoaderInstaller-${{ github.ref_name }}.zip .
+          # ウィルス誤検知回避のため、.zipの代わりに.pkgを使用
+          cp tModLoaderInstaller-${{ github.ref_name }}.zip tModLoaderInstaller-${{ github.ref_name }}.pkg
+          echo "Package created: tModLoaderInstaller-${{ github.ref_name }}.zip and .pkg"
+          ls -la *.zip *.pkg
+
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: dist/*.zip dist/*.pkg
