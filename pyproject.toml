@@ -1,0 +1,12 @@
+[project]
+name = "tmodloader-installer"
+version = "0.1.0"
+description = "tModLoader installer tool"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
