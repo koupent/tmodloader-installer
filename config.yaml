@@ -1,0 +1,56 @@
+# tModLoader インストーラー設定ファイル
+
+# ダウンロード設定
+download:
+  # GitHub Release URL
+  release_url: "https://github.com/tModLoader/tModLoader/releases/tag/v2025.06.3.0"
+  # ダウンロード先ディレクトリ
+  download_dir: "./downloads"
+  # ファイル名
+  filename: "tModLoader.zip"
+
+# バックアップ設定
+backup:
+  # バックアップ先ディレクトリ
+  backup_dir: "./backups"
+  # バックアップ名のプレフィックス
+  prefix: "tModLoader_backup"
+  # バックアップに含めるフォルダ
+  include_folders:
+    - "Players"
+    - "Worlds"
+    - "Mods"
+    - "tModLoader"
+
+# Steam設定
+steam:
+  # Steamの一般的なインストールパス（自動検出に失敗した場合のフォールバック）
+  common_paths:
+    - "C:/Program Files (x86)/Steam/steamapps/common/tModLoader"
+    - "C:/Program Files/Steam/steamapps/common/tModLoader"
+    - "D:/Steam/steamapps/common/tModLoader"
+  # Steam実行ファイルのパス
+  steam_exe_paths:
+    - "C:/Program Files (x86)/Steam/steam.exe"
+    - "C:/Program Files/Steam/steam.exe"
+    - "D:/Steam/steam.exe"
+
+# ログ設定
+logging:
+  # ログレベル (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  # ログファイルのパス
+  file: "./logs/installer.log"
+  # コンソール出力を有効にするか
+  console: true
+
+# その他の設定
+general:
+  # tModLoaderのインストールパス（自動検出される場合は空でOK）
+  tmodloader_path: ""
+  # 管理者権限が必要かどうか
+  require_admin: true
+  # 確認プロンプトを表示するか
+  interactive: true
+  # ダウンロードのタイムアウト（秒）
+  download_timeout: 300
