@@ -5,7 +5,7 @@
 
 # デフォルト設定
 DEFAULT_GITHUB_URL = (
-    "https://github.com/tModLoader/tModLoader/releases/tag/v2025.06.3.0"
+    "https://github.com/tModLoader/tModLoader/releases/tag/v2025.02.3.2"
 )
 DEFAULT_INSTALL_PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\tModLoader"
 
