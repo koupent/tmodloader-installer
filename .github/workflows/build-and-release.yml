@@ -41,6 +41,13 @@ jobs:
         echo "Build completed. Checking dist directory..."
         dir dist
         
+    - name: Create directories
+      run: |
+        mkdir -p dist/downloads
+        mkdir -p dist/backups
+        mkdir -p dist/config
+        echo "Directories created for packaging"
+        
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -59,6 +66,13 @@ jobs:
         name: tModLoaderInstaller
         path: dist/
         
+    - name: Create ZIP package
+      run: |
+        cd dist
+        zip -r tModLoaderInstaller-${{ github.ref_name }}.zip .
+        echo "ZIP package created: tModLoaderInstaller-${{ github.ref_name }}.zip"
+        ls -la *.zip
+        
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1
@@ -68,4 +82,4 @@ jobs:
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: dist/*.exe
+        artifacts: dist/*.zip

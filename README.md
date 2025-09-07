@@ -20,11 +20,18 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 ### 実行ファイル版（推奨）
 
 1. [Releases](https://github.com/your-username/tmodloader-installer/releases) から最新版をダウンロード
-2. `tModLoaderInstaller.exe` をダウンロード
-3. ダウンロードしたファイルをダブルクリックして実行
-4. 管理者権限で実行してください
+2. `tModLoaderInstaller-vX.X.X.zip` をダウンロード
+3. ZIPファイルを展開
+4. `tModLoaderInstaller.exe` をダブルクリックして実行
+5. 管理者権限で実行してください
 
 > **注意**: 初回実行時はWindows Defenderが警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください。
+
+#### ZIPパッケージの内容
+- `tModLoaderInstaller.exe`: メイン実行ファイル
+- `downloads/`: ダウンロードファイル保存用ディレクトリ
+- `backups/`: バックアップファイル保存用ディレクトリ
+- `config/`: 設定ファイル保存用ディレクトリ
 
 ### ソースコード版
 
