@@ -71,15 +71,9 @@ jobs:
           cd dist
           # 実行ファイルのみを配布（ウィルス誤検知回避）
           cp tModLoaderInstaller.exe tModLoaderInstaller-${{ github.ref_name }}.exe
-          # ディレクトリのみのZIPファイルを作成
-          zip -r tModLoaderInstaller-${{ github.ref_name }}-data.zip downloads/ backups/ config/
-          # 完全版ZIPファイルも作成
-          zip -r tModLoaderInstaller-${{ github.ref_name }}-full.zip .
-          echo "Packages created:"
+          echo "Package created:"
           echo "- tModLoaderInstaller-${{ github.ref_name }}.exe (実行ファイルのみ)"
-          echo "- tModLoaderInstaller-${{ github.ref_name }}-data.zip (データディレクトリのみ)"
-          echo "- tModLoaderInstaller-${{ github.ref_name }}-full.zip (完全版)"
-          ls -la *.exe *.zip
+          ls -la *.exe
 
       - name: Create Release
         id: create_release
@@ -90,6 +84,4 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: |
-            dist/*.exe
-            dist/*.zip
+          artifacts: dist/*.exe

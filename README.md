@@ -20,38 +20,47 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 ### 実行ファイル版（推奨）
 
 1. [Releases](https://github.com/your-username/tmodloader-installer/releases) から最新版をダウンロード
-2. 以下のいずれかをダウンロード：
-   - **推奨**: `tModLoaderInstaller-vX.X.X.exe` （実行ファイルのみ、ウィルス誤検知回避）
-   - `tModLoaderInstaller-vX.X.X-data.zip` （データディレクトリのみ）
-   - `tModLoaderInstaller-vX.X.X-full.zip` （完全版、実行ファイル+データ）
-3. 実行ファイルのみの場合：
-   - `tModLoaderInstaller-vX.X.X.exe` をダウンロード
-   - 初回実行時に必要なディレクトリが自動作成されます
-4. 完全版の場合：
-   - `tModLoaderInstaller-vX.X.X-full.zip` をダウンロードして展開
-5. `tModLoaderInstaller.exe` をダブルクリックして実行
+2. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
+3. **専用ディレクトリを作成**してexeファイルを配置：
+   ```
+   C:\tModLoaderInstaller\
+   └── tModLoaderInstaller-vX.X.X.exe
+   ```
+4. 初回実行時に以下のディレクトリが自動作成されます：
+   ```
+   C:\tModLoaderInstaller\
+   ├── tModLoaderInstaller-vX.X.X.exe
+   ├── downloads\          (ダウンロードファイル保存用)
+   ├── backups\            (バックアップファイル保存用)
+   └── config\             (設定ファイル保存用)
+   ```
+5. `tModLoaderInstaller-vX.X.X.exe` をダブルクリックして実行
 6. 管理者権限で実行してください
 
-> **注意**:
+> **重要**:
 >
-> - 初回実行時は Windows Defender が警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください。
-> - ZIP ファイルがブラウザでウィルスと誤診断される場合は、実行ファイルのみ（`.exe`）をダウンロードしてください。
+> - **専用ディレクトリに配置**: exeファイルは必ず専用のディレクトリに配置してください
+> - **初回実行時**: Windows Defender が警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください
+> - **管理者権限**: インストールには管理者権限が必要です
 
-#### パッケージの内容
+#### ディレクトリ構成
 
-- `tModLoaderInstaller.exe`: メイン実行ファイル
-- `downloads/`: ダウンロードファイル保存用ディレクトリ
-- `backups/`: バックアップファイル保存用ディレクトリ
-- `config/`: 設定ファイル保存用ディレクトリ
+**ダウンロード時**:
+- `tModLoaderInstaller-vX.X.X.exe`: メイン実行ファイル
+
+**初回実行後**:
+- `tModLoaderInstaller-vX.X.X.exe`: メイン実行ファイル
+- `downloads/`: ダウンロードファイル保存用ディレクトリ（自動作成）
+- `backups/`: バックアップファイル保存用ディレクトリ（自動作成）
+- `config/`: 設定ファイル保存用ディレクトリ（自動作成）
 
 #### ダウンロード時のトラブルシューティング
 
-**ZIP ファイルがウィルスと誤診断される場合**:
+**ブラウザでダウンロードできない場合**:
 
-1. **推奨**: `tModLoaderInstaller-vX.X.X.exe` （実行ファイルのみ）をダウンロード
-2. ブラウザの設定でダウンロード保護を一時的に無効化
-3. 右クリック →「名前を付けてリンク先を保存」でダウンロード
-4. コマンドラインでダウンロード: `curl -L -o installer.exe [URL]`
+1. ブラウザの設定でダウンロード保護を一時的に無効化
+2. 右クリック →「名前を付けてリンク先を保存」でダウンロード
+3. コマンドラインでダウンロード: `curl -L -o installer.exe [URL]`
 
 **Windows Defender が警告を表示する場合**:
 
@@ -59,11 +68,12 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 2. Windows Defender の除外設定に実行ファイルを追加
 3. 管理者権限で実行
 
-**実行ファイルのみの場合の使用方法**:
+**使用方法**:
 
 1. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
-2. 任意のフォルダに配置
-3. 初回実行時に `downloads/`, `backups/`, `config/` ディレクトリが自動作成されます
+2. **専用ディレクトリ**（例：`C:\tModLoaderInstaller\`）を作成
+3. exeファイルをそのディレクトリに配置
+4. 初回実行時に `downloads/`, `backups/`, `config/` ディレクトリが自動作成されます
 
 ### ソースコード版
 
