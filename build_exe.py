@@ -11,7 +11,7 @@ from pathlib import Path
 
 def build_executable():
     """実行ファイルをビルド"""
-    print("tModLoader インストーラー実行ファイルをビルドしています...")
+    print("Building tModLoader Installer executable...")
 
     # PyInstallerコマンド
     cmd = [
@@ -32,17 +32,17 @@ def build_executable():
     try:
         # ビルド実行
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-        print("ビルドが完了しました！")
-        print(f"実行ファイル: dist/tModLoaderInstaller.exe")
+        print("Build completed!")
+        print(f"Executable: dist/tModLoaderInstaller.exe")
         return True
 
     except subprocess.CalledProcessError as e:
-        print(f"ビルドエラー: {e}")
+        print(f"Build error: {e}")
         print(f"stdout: {e.stdout}")
         print(f"stderr: {e.stderr}")
         return False
     except FileNotFoundError:
-        print("PyInstallerが見つかりません。以下のコマンドでインストールしてください:")
+        print("PyInstaller not found. Install with:")
         print("uv add pyinstaller")
         return False
 
@@ -63,21 +63,21 @@ def create_icon():
 
         # アイコンファイルとして保存
         image.save("icon.ico", format="ICO")
-        print("アイコンファイルを作成しました: icon.ico")
+        print("Icon file created: icon.ico")
         return True
 
     except ImportError:
-        print("Pillowがインストールされていません。アイコンは作成されません。")
+        print("Pillow not installed. Icon will not be created.")
         return False
     except Exception as e:
-        print(f"アイコン作成エラー: {e}")
+        print(f"Icon creation error: {e}")
         return False
 
 
 def main():
     """メイン関数"""
     print("=" * 50)
-    print("tModLoader インストーラー ビルドスクリプト")
+    print("tModLoader Installer Build Script")
     print("=" * 50)
 
     # アイコンファイルの作成
@@ -85,10 +85,10 @@ def main():
 
     # 実行ファイルのビルド
     if build_executable():
-        print("\nビルドが正常に完了しました！")
-        print("dist/tModLoaderInstaller.exe を実行してください。")
+        print("\nBuild completed successfully!")
+        print("Run dist/tModLoaderInstaller.exe")
     else:
-        print("\nビルドに失敗しました。")
+        print("\nBuild failed.")
         sys.exit(1)
 
 
