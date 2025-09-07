@@ -30,7 +30,7 @@ def build_executable():
         "--hidden-import=yaml",
         "--hidden-import=colorama",
         "--hidden-import=tqdm",
-        "tmodloader_installer/gui_main.py",
+        "tmodloader_installer/__main__.py",
     ]
 
     try:
