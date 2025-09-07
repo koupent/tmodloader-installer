@@ -8,6 +8,7 @@ from tkinter import ttk, filedialog, messagebox
 import threading
 import json
 import shutil
+import sys
 from pathlib import Path
 
 from tmodloader_installer.core import SimpleInstaller
@@ -55,7 +56,15 @@ class MainWindow:
 
     def _get_config_file_path(self):
         """設定ファイルのパスを取得"""
-        config_dir = Path(__file__).parent.parent / "config"
+        # PyInstallerでパッケージ化された場合の対応
+        if getattr(sys, 'frozen', False):
+            # 実行ファイルの場合、実行ファイルと同じディレクトリにconfigを作成
+            base_path = Path(sys.executable).parent
+        else:
+            # 開発環境の場合
+            base_path = Path(__file__).parent.parent
+        
+        config_dir = base_path / "config"
         config_dir.mkdir(exist_ok=True)
         return config_dir / "gui_config.json"
 
@@ -348,7 +357,15 @@ class MainWindow:
     def find_backup_dirs(self, install_path):
         """バックアップフォルダを検索"""
         # exeファイルと同じディレクトリのbackupsフォルダを検索
-        backup_dir = Path(__file__).parent.parent / "backups"
+        # PyInstallerでパッケージ化された場合の対応
+        if getattr(sys, 'frozen', False):
+            # 実行ファイルの場合、実行ファイルと同じディレクトリにbackupsを作成
+            base_path = Path(sys.executable).parent
+        else:
+            # 開発環境の場合
+            base_path = Path(__file__).parent.parent
+        
+        backup_dir = base_path / "backups"
 
         if not backup_dir.exists():
             return []

@@ -58,7 +58,16 @@ class SimpleInstaller:
 
         # バックアップ先ディレクトリを作成（exeファイルと同じディレクトリ）
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        backup_dir = Path(__file__).parent / "backups"
+        
+        # PyInstallerでパッケージ化された場合の対応
+        if getattr(sys, 'frozen', False):
+            # 実行ファイルの場合、実行ファイルと同じディレクトリにbackupsを作成
+            base_path = Path(sys.executable).parent
+        else:
+            # 開発環境の場合
+            base_path = Path(__file__).parent.parent
+        
+        backup_dir = base_path / "backups"
         backup_dir.mkdir(exist_ok=True)
         backup_path = backup_dir / f"tModLoader_backup_{timestamp}"
 
@@ -74,7 +83,15 @@ class SimpleInstaller:
         response.raise_for_status()
         
         # 一時ファイルに保存（exeファイルと同じディレクトリ）
-        temp_dir = Path(__file__).parent / "downloads"
+        # PyInstallerでパッケージ化された場合の対応
+        if getattr(sys, 'frozen', False):
+            # 実行ファイルの場合、実行ファイルと同じディレクトリにdownloadsを作成
+            base_path = Path(sys.executable).parent
+        else:
+            # 開発環境の場合
+            base_path = Path(__file__).parent.parent
+        
+        temp_dir = base_path / "downloads"
         temp_dir.mkdir(exist_ok=True)
         self.temp_file = temp_dir / "tModLoader_temp.zip"
         with open(self.temp_file, "wb") as f:
