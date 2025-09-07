@@ -71,6 +71,8 @@ jobs:
           cd dist
           # 実行ファイルのみを配布（ウィルス誤検知回避）
           cp tModLoaderInstaller.exe tModLoaderInstaller-${{ github.ref_name }}.exe
+          # 元のファイルを削除してバージョン付きファイルのみ残す
+          rm tModLoaderInstaller.exe
           echo "Package created:"
           echo "- tModLoaderInstaller-${{ github.ref_name }}.exe (実行ファイルのみ)"
           ls -la *.exe
