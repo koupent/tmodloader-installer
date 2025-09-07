@@ -84,4 +84,6 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: dist/*.zip dist/*.pkg
+          artifacts: |
+            dist/*.zip
+            dist/*.pkg
