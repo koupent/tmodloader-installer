@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Building executable..."
           $env:PYTHONIOENCODING="utf-8"
-          uv run python build_exe.py
+          uv run python build_exe.py ${{ github.ref_name }}
           echo "Build completed. Checking dist directory..."
           dir dist
 
@@ -69,10 +69,7 @@ jobs:
       - name: Create package
         run: |
           cd dist
-          # 実行ファイルのみを配布（ウィルス誤検知回避）
-          cp tModLoaderInstaller.exe tModLoaderInstaller-${{ github.ref_name }}.exe
-          # 元のファイルを削除してバージョン付きファイルのみ残す
-          rm tModLoaderInstaller.exe
+          # バージョン付きファイルが既に生成されているので、そのまま使用
           echo "Package created:"
           echo "- tModLoaderInstaller-${{ github.ref_name }}.exe (実行ファイルのみ)"
           ls -la *.exe

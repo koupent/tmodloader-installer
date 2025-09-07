@@ -21,7 +21,7 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 1. [Releases](https://github.com/your-username/tmodloader-installer/releases) から最新版をダウンロード
 2. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
-3. **専用ディレクトリを作成**してexeファイルを配置：
+3. **専用ディレクトリを作成**して exe ファイルを配置：
    ```
    C:\tModLoaderInstaller\
    └── tModLoaderInstaller-vX.X.X.exe
@@ -39,16 +39,18 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 > **重要**:
 >
-> - **専用ディレクトリに配置**: exeファイルは必ず専用のディレクトリに配置してください
+> - **専用ディレクトリに配置**: exe ファイルは必ず専用のディレクトリに配置してください
 > - **初回実行時**: Windows Defender が警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください
 > - **管理者権限**: インストールには管理者権限が必要です
 
 #### ディレクトリ構成
 
 **ダウンロード時**:
+
 - `tModLoaderInstaller-vX.X.X.exe`: メイン実行ファイル
 
 **初回実行後**:
+
 - `tModLoaderInstaller-vX.X.X.exe`: メイン実行ファイル
 - `downloads/`: ダウンロードファイル保存用ディレクトリ（自動作成）
 - `backups/`: バックアップファイル保存用ディレクトリ（自動作成）
@@ -72,7 +74,7 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 1. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
 2. **専用ディレクトリ**（例：`C:\tModLoaderInstaller\`）を作成
-3. exeファイルをそのディレクトリに配置
+3. exe ファイルをそのディレクトリに配置
 4. 初回実行時に `downloads/`, `backups/`, `config/` ディレクトリが自動作成されます
 
 ### ソースコード版

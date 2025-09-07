@@ -9,16 +9,22 @@ import subprocess
 from pathlib import Path
 
 
-def build_executable():
+def build_executable(version=None):
     """実行ファイルをビルド"""
     print("Building tModLoader Installer executable...")
+    
+    # バージョンが指定されている場合はバージョン付きの名前にする
+    if version:
+        exe_name = f"tModLoaderInstaller-{version}"
+    else:
+        exe_name = "tModLoaderInstaller"
 
     # PyInstallerコマンド
     cmd = [
         "pyinstaller",
         "--onefile",  # 単一ファイルとして出力
         "--windowed",  # コンソールウィンドウを非表示
-        "--name=tModLoaderInstaller",  # 実行ファイル名
+        f"--name={exe_name}",  # 実行ファイル名（バージョン付き）
         # "--icon=icon.ico",  # アイコンファイル（存在する場合）
         # "--add-data=config.yaml;.",  # 設定ファイルを含める（不要）
         "--hidden-import=requests",
@@ -33,7 +39,7 @@ def build_executable():
         # ビルド実行
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
         print("Build completed!")
-        print(f"Executable: dist/tModLoaderInstaller.exe")
+        print(f"Executable: dist/{exe_name}.exe")
         return True
 
     except subprocess.CalledProcessError as e:
@@ -80,13 +86,21 @@ def main():
     print("tModLoader Installer Build Script")
     print("=" * 50)
 
+    # コマンドライン引数からバージョンを取得
+    version = None
+    if len(sys.argv) > 1:
+        version = sys.argv[1]
+
     # アイコンファイルの作成
     create_icon()
 
     # 実行ファイルのビルド
-    if build_executable():
+    if build_executable(version):
         print("\nBuild completed successfully!")
-        print("Run dist/tModLoaderInstaller.exe")
+        if version:
+            print(f"Run dist/tModLoaderInstaller-{version}.exe")
+        else:
+            print("Run dist/tModLoaderInstaller.exe")
     else:
         print("\nBuild failed.")
         sys.exit(1)
