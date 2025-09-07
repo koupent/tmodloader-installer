@@ -21,15 +21,21 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 1. [Releases](https://github.com/your-username/tmodloader-installer/releases) から最新版をダウンロード
 2. 以下のいずれかをダウンロード：
-   - `tModLoaderInstaller-vX.X.X.pkg` （推奨：ウィルス誤検知回避）
-   - `tModLoaderInstaller-vX.X.X.zip` （従来版）
-3. ファイルを展開（.pkgファイルはZIPファイルとして展開可能）
-4. `tModLoaderInstaller.exe` をダブルクリックして実行
-5. 管理者権限で実行してください
+   - **推奨**: `tModLoaderInstaller-vX.X.X.exe` （実行ファイルのみ、ウィルス誤検知回避）
+   - `tModLoaderInstaller-vX.X.X-data.zip` （データディレクトリのみ）
+   - `tModLoaderInstaller-vX.X.X-full.zip` （完全版、実行ファイル+データ）
+3. 実行ファイルのみの場合：
+   - `tModLoaderInstaller-vX.X.X.exe` をダウンロード
+   - 初回実行時に必要なディレクトリが自動作成されます
+4. 完全版の場合：
+   - `tModLoaderInstaller-vX.X.X-full.zip` をダウンロードして展開
+5. `tModLoaderInstaller.exe` をダブルクリックして実行
+6. 管理者権限で実行してください
 
-> **注意**: 
+> **注意**:
+>
 > - 初回実行時は Windows Defender が警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください。
-> - ZIPファイルがブラウザでウィルスと誤診断される場合は、`.pkg`ファイルをダウンロードしてください。
+> - ZIP ファイルがブラウザでウィルスと誤診断される場合は、実行ファイルのみ（`.exe`）をダウンロードしてください。
 
 #### パッケージの内容
 
@@ -40,16 +46,24 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 #### ダウンロード時のトラブルシューティング
 
-**ZIPファイルがウィルスと誤診断される場合**:
-1. `.pkg`ファイルをダウンロード（ZIPファイルと同じ内容）
-2. ブラウザの設定でダウンロード保護を一時的に無効化
-3. 右クリック→「名前を付けてリンク先を保存」でダウンロード
-4. ダウンロード後にファイル名を`.zip`に変更
+**ZIP ファイルがウィルスと誤診断される場合**:
 
-**Windows Defenderが警告を表示する場合**:
+1. **推奨**: `tModLoaderInstaller-vX.X.X.exe` （実行ファイルのみ）をダウンロード
+2. ブラウザの設定でダウンロード保護を一時的に無効化
+3. 右クリック →「名前を付けてリンク先を保存」でダウンロード
+4. コマンドラインでダウンロード: `curl -L -o installer.exe [URL]`
+
+**Windows Defender が警告を表示する場合**:
+
 1. 「詳細情報」→「実行」をクリック
-2. Windows Defenderの除外設定に実行ファイルを追加
+2. Windows Defender の除外設定に実行ファイルを追加
 3. 管理者権限で実行
+
+**実行ファイルのみの場合の使用方法**:
+
+1. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
+2. 任意のフォルダに配置
+3. 初回実行時に `downloads/`, `backups/`, `config/` ディレクトリが自動作成されます
 
 ### ソースコード版
 

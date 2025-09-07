@@ -69,39 +69,27 @@ jobs:
       - name: Create package
         run: |
           cd dist
-          zip -r tModLoaderInstaller-${{ github.ref_name }}.zip .
-          # ウィルス誤検知回避のため、.zipの代わりに.pkgを使用
-          cp tModLoaderInstaller-${{ github.ref_name }}.zip tModLoaderInstaller-${{ github.ref_name }}.pkg
-          echo "Package created: tModLoaderInstaller-${{ github.ref_name }}.zip and .pkg"
-          ls -la *.zip *.pkg
+          # 実行ファイルのみを配布（ウィルス誤検知回避）
+          cp tModLoaderInstaller.exe tModLoaderInstaller-${{ github.ref_name }}.exe
+          # ディレクトリのみのZIPファイルを作成
+          zip -r tModLoaderInstaller-${{ github.ref_name }}-data.zip downloads/ backups/ config/
+          # 完全版ZIPファイルも作成
+          zip -r tModLoaderInstaller-${{ github.ref_name }}-full.zip .
+          echo "Packages created:"
+          echo "- tModLoaderInstaller-${{ github.ref_name }}.exe (実行ファイルのみ)"
+          echo "- tModLoaderInstaller-${{ github.ref_name }}-data.zip (データディレクトリのみ)"
+          echo "- tModLoaderInstaller-${{ github.ref_name }}-full.zip (完全版)"
+          ls -la *.exe *.zip
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
-
-      - name: Upload ZIP Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/tModLoaderInstaller-${{ github.ref_name }}.zip
-          asset_name: tModLoaderInstaller-${{ github.ref_name }}.zip
-          asset_content_type: application/zip
-
-      - name: Upload PKG Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/tModLoaderInstaller-${{ github.ref_name }}.pkg
-          asset_name: tModLoaderInstaller-${{ github.ref_name }}.pkg
-          asset_content_type: application/octet-stream
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: |
+            dist/*.exe
+            dist/*.zip
