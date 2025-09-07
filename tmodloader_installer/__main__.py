@@ -3,7 +3,7 @@
 tModLoader インストーラー メインエントリーポイント
 """
 
-from .gui import MainWindow
+from tmodloader_installer.gui import MainWindow
 
 
 def main():

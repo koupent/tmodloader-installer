@@ -5,7 +5,7 @@
 
 import tkinter as tk
 from tkinter import ttk
-from ...utils import LOG_WINDOW_SIZE
+from tmodloader_installer.utils import LOG_WINDOW_SIZE
 
 
 class LogWindow:

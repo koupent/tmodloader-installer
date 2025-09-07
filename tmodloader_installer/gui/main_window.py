@@ -10,8 +10,8 @@ import json
 import shutil
 from pathlib import Path
 
-from ..core import SimpleInstaller
-from ..utils import (
+from tmodloader_installer.core import SimpleInstaller
+from tmodloader_installer.utils import (
     DEFAULT_GITHUB_URL,
     DEFAULT_INSTALL_PATH,
     WINDOW_SIZE,
@@ -19,8 +19,8 @@ from ..utils import (
     ProgressStage,
     natural_sort_key,
 )
-from .dialogs import BackupSelectionDialog
-from .widgets import LogWindow
+from tmodloader_installer.gui.dialogs import BackupSelectionDialog
+from tmodloader_installer.gui.widgets import LogWindow
 
 
 class MainWindow:

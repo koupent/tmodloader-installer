@@ -5,7 +5,7 @@
 
 import argparse
 import sys
-from ..core import SimpleInstaller
+from tmodloader_installer.core import SimpleInstaller
 
 
 def main():

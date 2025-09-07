@@ -8,7 +8,7 @@ from tkinter import ttk, messagebox
 import datetime
 import shutil
 from pathlib import Path
-from ...utils import natural_sort_key, BACKUP_DIALOG_SIZE
+from tmodloader_installer.utils import natural_sort_key, BACKUP_DIALOG_SIZE
 
 
 class BackupSelectionDialog:
