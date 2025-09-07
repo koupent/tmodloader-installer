@@ -30,11 +30,14 @@ jobs:
       run: uv sync
       
     - name: Install PyInstaller
-      run: uv add pyinstaller
+      run: uv add pyinstaller pillow
       
     - name: Build executable
       run: |
+        echo "Building executable..."
         uv run python build_exe.py
+        echo "Build completed. Checking dist directory..."
+        ls -la dist/
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4

@@ -19,17 +19,13 @@ def build_executable():
         "--onefile",  # 単一ファイルとして出力
         "--windowed",  # コンソールウィンドウを非表示
         "--name=tModLoaderInstaller",  # 実行ファイル名
-        "--icon=icon.ico",  # アイコンファイル（存在する場合）
-        "--add-data=config.yaml;.",  # 設定ファイルを含める
-        "--hidden-import=win32api",  # Windows API
-        "--hidden-import=win32con",
-        "--hidden-import=win32gui",
-        "--hidden-import=win32process",
-        "--hidden-import=psutil",
+        # "--icon=icon.ico",  # アイコンファイル（存在する場合）
+        # "--add-data=config.yaml;.",  # 設定ファイルを含める（不要）
         "--hidden-import=requests",
-        "--hidden-import=yaml",
-        "--hidden-import=colorama",
-        "--hidden-import=tqdm",
+        "--hidden-import=tkinter",
+        "--hidden-import=tkinter.ttk",
+        "--hidden-import=tkinter.messagebox",
+        "--hidden-import=tkinter.filedialog",
         "tmodloader_installer/__main__.py",
     ]
 
