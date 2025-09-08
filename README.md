@@ -19,14 +19,14 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 ### 実行ファイル版（推奨）
 
-1. [Releases](https://github.com/your-username/tmodloader-installer/releases) から最新版をダウンロード
+1. [Releases](https://github.com/koupent/tmodloader-installer/releases) から最新版をダウンロード
 2. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
-3. **専用ディレクトリを作成**して exe ファイルを配置：
+3. 任意の場所に**専用フォルダを作成**して exe ファイルを配置：
    ```
    C:\tModLoaderInstaller\
    └── tModLoaderInstaller-vX.X.X.exe
    ```
-4. 初回実行時に以下のディレクトリが自動作成されます：
+4. 初回実行時に以下のフォルダが自動作成されます：
    ```
    C:\tModLoaderInstaller\
    ├── tModLoaderInstaller-vX.X.X.exe
@@ -39,11 +39,11 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 
 > **重要**:
 >
-> - **専用ディレクトリに配置**: exe ファイルは必ず専用のディレクトリに配置してください
+> - **専用フォルダに配置**: exe ファイルは必ず専用のフォルダに配置してください
 > - **初回実行時**: Windows Defender が警告を表示する場合があります。「詳細情報」→「実行」をクリックしてください
 > - **管理者権限**: インストールには管理者権限が必要です
 
-#### ディレクトリ構成
+#### フォルダ構成
 
 **ダウンロード時**:
 
@@ -52,9 +52,9 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 **初回実行後**:
 
 - `tModLoaderInstaller-vX.X.X.exe`: メイン実行ファイル
-- `downloads/`: ダウンロードファイル保存用ディレクトリ（自動作成）
-- `backups/`: バックアップファイル保存用ディレクトリ（自動作成）
-- `config/`: 設定ファイル保存用ディレクトリ（自動作成）
+- `downloads/`: ダウンロードファイル保存用フォルダ（自動作成）
+- `backups/`: バックアップファイル保存用フォルダ（自動作成）
+- `config/`: 設定ファイル保存用フォルダ（自動作成）
 
 #### ダウンロード時のトラブルシューティング
 
@@ -73,23 +73,11 @@ tModLoader のインストール・更新を簡単に行えるデスクトップ
 **使用方法**:
 
 1. `tModLoaderInstaller-vX.X.X.exe` をダウンロード
-2. **専用ディレクトリ**（例：`C:\tModLoaderInstaller\`）を作成
-3. exe ファイルをそのディレクトリに配置
-4. 初回実行時に `downloads/`, `backups/`, `config/` ディレクトリが自動作成されます
+2. **専用フォルダ**（例：`C:\tModLoaderInstaller\`）を作成
+3. exe ファイルをそのフォルダに配置
+4. 初回実行時に `downloads/`, `backups/`, `config/` フォルダが自動作成されます
 
-### ソースコード版
-
-```bash
-# リポジトリをクローン
-git clone https://github.com/your-username/tmodloader-installer.git
-cd tmodloader-installer
-
-# 依存関係をインストール
-uv sync
-
-# アプリケーションを実行
-uv run python -m tmodloader_installer
-```
+<!-- ソースコード版の説明は不要のため削除しました -->
 
 ## 使用方法
 
@@ -102,8 +90,13 @@ uv run python -m tmodloader_installer
 
 2. **設定を確認**
 
-   - **GitHub URL**: ダウンロード元の URL（通常は変更不要）
-   - **インストール先**: tModLoader のインストール先パス
+   - **インストール先**: tModLoader のインストール先パス（通常は自動で入ります）
+   - **GitHub Release URL**: ダウンロード元の URL（基本はそのままで OK）
+     - 好きなバージョンを指定したい場合は、次の手順で変更できます：
+       1. 「タグ一覧」ページを開く → [tModLoader Tags](https://github.com/tModLoader/tModLoader/tags)
+       2. 使いたいバージョン（例：v2025.09.1.5）をクリック
+       3. 開いたページの URL をコピー
+       4. アプリの「GitHub Release URL」に貼り付け
 
 3. **インストール実行**
 
